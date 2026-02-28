@@ -1,0 +1,313 @@
+.main {
+    padding: 40px 0 80px;
+    min-height: 80vh;
+    background: var(--bg);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 28px 0;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-top: 4px;
+}
+
+/* Stats */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.statCard {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 18px;
+}
+
+.statIcon {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.statVal {
+    font-size: 1.625rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.03em;
+}
+
+.statLabel {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* Credit */
+.creditCard {
+    background: var(--primary);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+    margin-bottom: 28px;
+    color: white;
+}
+
+.creditTitle {
+    font-size: 0.875rem;
+    font-weight: 700;
+    opacity: 0.8;
+    margin-bottom: 16px;
+}
+
+.creditRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.creditStat {
+    text-align: center;
+}
+
+.creditVal {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: white;
+}
+
+.creditBar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.creditFill {
+    height: 100%;
+    background: #7EC99A;
+    border-radius: 9999px;
+    transition: width 0.5s ease;
+}
+
+/* Orders section */
+.sectionTitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.ordersSection {
+    margin-top: 32px;
+}
+
+.orderList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.orderCard {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.orderHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: background 120ms;
+}
+
+.orderHead:hover {
+    background: var(--surface-muted);
+}
+
+.orderNum {
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.orderMeta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.orderTotal {
+    font-size: 1rem;
+    color: var(--text);
+}
+
+.orderChevron {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.orderBody {
+    padding: 0 20px 20px;
+    border-top: 1px solid var(--border);
+}
+
+/* Progress */
+.progress {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin: 20px 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.progressStep {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    position: relative;
+    min-width: 80px;
+}
+
+.progressDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border);
+    border: 2px solid var(--border);
+    position: relative;
+    z-index: 1;
+    transition: all 200ms;
+}
+
+.progressStepDone .progressDot {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.progressLabel {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-faint);
+    text-align: center;
+}
+
+.progressStepDone .progressLabel {
+    color: var(--primary);
+}
+
+.progressLine {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    right: -50%;
+    height: 2px;
+    background: var(--border);
+    z-index: 0;
+}
+
+.progressStepDone .progressLine {
+    background: var(--primary);
+}
+
+/* Tracking */
+.trackingBox {
+    background: var(--surface-muted);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    margin-bottom: 14px;
+}
+
+/* Items table */
+.itemsTable {
+    margin-bottom: 14px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+/* Order totals */
+.orderTotals {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+}
+
+.totalRow {
+    display: flex;
+    gap: 24px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.totalRowFinal {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+}
+
+/* Empty */
+.empty {
+    text-align: center;
+    padding: 60px 24px;
+}
+
+.emptyIcon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+.emptyTitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .orderMeta {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .statsGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

@@ -1,0 +1,121 @@
+.page {
+    min-height: calc(100vh - 200px);
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+}
+
+.card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: 3rem 2.5rem;
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+}
+
+.icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.title {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+}
+
+.desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.timeline {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.timelineItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.timelineLine {
+    width: 2px;
+    height: 24px;
+    background: var(--border);
+    margin-left: 17px;
+}
+
+.dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    color: var(--text-muted);
+}
+
+.dotDone {
+    border-color: var(--success);
+    background: var(--success);
+    color: white;
+    font-weight: 700;
+}
+
+.dotActive {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
+.timelineTitle {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.15rem;
+}
+
+.timelineDesc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.info {
+    background: var(--surface-2);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    text-align: left;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}

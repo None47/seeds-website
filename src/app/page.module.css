@@ -1,0 +1,951 @@
+/* ─── HERO ─────────────────────────────────────────────────── */
+.hero {
+    padding: 96px 0 120px;
+    background: var(--bg);
+    /* Subtle warm linen grain for tactile depth */
+    background-image:
+        radial-gradient(ellipse at 70% 20%, rgba(196, 154, 42, 0.04) 0%, transparent 55%),
+        radial-gradient(ellipse at 15% 80%, rgba(27, 67, 50, 0.05) 0%, transparent 50%);
+}
+
+.heroLayout {
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 64px;
+    align-items: center;
+}
+
+.heroCopy {
+    max-width: 580px;
+}
+
+.heroPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    margin-bottom: 24px;
+    background: var(--primary-subtle);
+    border: 1px solid rgba(27, 67, 50, 0.18);
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 0.01em;
+}
+
+.heroBadgeEarth {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    margin-bottom: 16px;
+    background: var(--earth-subtle);
+    border: 1px solid var(--earth-border);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--earth);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.heroDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
+    animation: blink 2.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0.2
+    }
+}
+
+.heroH1 {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.heroAccent {
+    color: var(--primary);
+}
+
+.heroSub {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 28px;
+    max-width: 480px;
+}
+
+.heroBullets {
+    margin-bottom: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.heroBullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.heroCheck {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-subtle);
+    color: var(--primary);
+    font-size: 0.625rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.heroCtas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.heroNote {
+    font-size: 0.8125rem;
+    color: var(--text-faint);
+}
+
+/* Hero right */
+.heroRight {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.heroCard {
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-2xl);
+    padding: 28px;
+    box-shadow: var(--shadow-lg);
+}
+
+.heroCardTop {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.heroCardEmoji {
+    font-size: 2.25rem;
+}
+
+.heroCardLabel {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--text-muted);
+}
+
+.heroCardVal {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-top: 2px;
+}
+
+.heroCardDivider {
+    height: 1px;
+    background: var(--border);
+    margin: 16px 0;
+}
+
+.heroCardStats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.heroStat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.heroStatVal {
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.025em;
+}
+
+.heroStatLabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.heroCardBadges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+/* Float cards */
+.heroFloatCards {
+    display: flex;
+    gap: 10px;
+}
+
+.heroFloat {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 12px 14px;
+    box-shadow: var(--shadow-sm);
+    font-size: 1.25rem;
+}
+
+.hfTitle {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.hfSub {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+}
+
+/* ─── TRUST BAR ─────────────────────────────────────────────── */
+.trustBar {
+    background: var(--forest-mid);
+    border-top: 4px solid var(--earth-light);
+    padding: 44px 0;
+}
+
+.trustGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+}
+
+.trustItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 24px;
+    text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trustItem:last-child {
+    border-right: none;
+}
+
+.trustVal {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.04em;
+}
+
+.trustLabel {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
+    letter-spacing: 0.01em;
+}
+
+/* ─── SECTION HEADERS ───────────────────────────────────────── */
+.sectionHead {
+    margin-bottom: 48px;
+    max-width: 600px;
+}
+
+.sectionHead .label {
+    margin-bottom: 8px;
+}
+
+.sectionHead h2 {
+    margin-bottom: 12px;
+}
+
+.sectionSub {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.sectionHeadRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    max-width: none;
+}
+
+.sectionHeadRow>div {
+    max-width: 480px;
+}
+
+/* ─── WHY CHOOSE US ─────────────────────────────────────────── */
+.whyGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.whyCard {
+    padding: 28px;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-left: 3px solid transparent;
+    border-radius: var(--radius-xl);
+    transition: box-shadow var(--t-slow), border-color var(--t-slow), transform var(--t-slow);
+}
+
+.whyCard:hover {
+    box-shadow: var(--shadow-md);
+    border-left-color: var(--primary);
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+}
+
+.whyIcon {
+    font-size: 1.75rem;
+    margin-bottom: 18px;
+}
+
+.whyTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.whyDesc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+}
+
+/* ─── CATEGORIES ────────────────────────────────────────────── */
+.catSection {
+    background: var(--surface-muted);
+}
+
+.catGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.catCard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    transition: all var(--t-slow);
+}
+
+.catCard:hover {
+    border-color: var(--primary);
+    background: var(--primary-subtle);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.catCard:hover .catArrow {
+    transform: translateX(4px);
+}
+
+.catIcon {
+    font-size: 2rem;
+}
+
+.catName {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.catDesc {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+.catArrow {
+    font-size: 1rem;
+    color: var(--primary);
+    margin-top: auto;
+    transition: transform var(--t-base);
+}
+
+/* ─── PRODUCTS ──────────────────────────────────────────────── */
+.productSection {
+    background: var(--bg);
+}
+
+.productGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.productCard {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: all var(--t-slow);
+}
+
+.productCard:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+}
+
+.productImg {
+    height: 148px;
+    background: linear-gradient(135deg, var(--primary-subtle) 0%, var(--earth-subtle) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.productEmoji {
+    font-size: 3.5rem;
+}
+
+.seasonTag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.productBody {
+    padding: 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.productCat {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 5px;
+}
+
+.productName {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.productCrop {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+.productMetrics {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.mLabel {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-faint);
+}
+
+.mVal {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.productFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.price {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.price span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.viewCta {
+    font-size: 0.8125rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Skeleton */
+.productSkel {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+}
+
+.skelImg {
+    height: 148px;
+    border-radius: 0;
+}
+
+.skelBody {
+    padding: 18px;
+}
+
+/* ─── CERTIFICATIONS ────────────────────────────────────────── */
+.certSection {
+    background: linear-gradient(160deg, var(--forest-deep) 0%, var(--primary) 100%);
+    border-top: 4px solid var(--earth-light);
+    color: white;
+}
+
+.certLayout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 72px;
+    align-items: center;
+}
+
+.certCopy .label {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.certCopy h2 {
+    color: #fff !important;
+}
+
+.certDesc {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.58);
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+.certList {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.certItem {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.certTick {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: white;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.certLabel {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.certSub {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.48);
+}
+
+/* Lab report card */
+.certCard {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(196, 154, 42, 0.2);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.certCardLabel {
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: rgba(196, 154, 42, 0.65);
+}
+
+.certCardRows {
+    padding: 4px 0;
+}
+
+.certRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.875rem;
+}
+
+.certRow:last-child {
+    border-bottom: none;
+}
+
+.certRowLabel {
+    color: rgba(255, 255, 255, 0.42);
+}
+
+.certRowVal {
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: 600;
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.8125rem;
+}
+
+/* ─── TESTIMONIALS ──────────────────────────────────────────── */
+.tGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.tCard {
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+
+.tQuote {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-style: italic;
+    flex: 1;
+}
+
+.tQuote::before {
+    content: '\201C';
+    font-size: 2rem;
+    font-style: normal;
+    color: var(--border-strong);
+    line-height: 0;
+    vertical-align: -0.5rem;
+    margin-right: 3px;
+}
+
+.tAuthor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tAvatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tName {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.tTitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 1px;
+}
+
+/* ─── HOW IT WORKS ──────────────────────────────────────────── */
+.howSection {
+    background: var(--surface-muted);
+}
+
+.stepsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    position: relative;
+}
+
+.stepsGrid::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: calc(16.66% + 16px);
+    right: calc(16.66% + 16px);
+    height: 1px;
+    background: repeating-linear-gradient(to right,
+            var(--border) 0,
+            var(--border) 6px,
+            transparent 6px,
+            transparent 12px);
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 8px;
+}
+
+.stepNum {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    font-family: "SF Mono", "Fira Code", monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+    outline: 5px solid var(--surface-muted);
+    outline-offset: 0;
+}
+
+.stepTitle {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.stepDesc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+}
+
+/* ─── CTA BANNER ────────────────────────────────────────────── */
+.ctaBanner {
+    background: linear-gradient(135deg, var(--forest-mid) 0%, var(--primary) 100%);
+    border: 1px solid var(--earth-border);
+    border-radius: var(--radius-2xl);
+    padding: 56px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle gold top stripe on CTA */
+.ctaBanner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--earth-light), transparent 70%);
+}
+
+.ctaTitle {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+}
+
+.ctaSub {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 460px;
+    line-height: 1.7;
+}
+
+.ctaButtons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.ctaOutline {
+    border-color: rgba(255, 255, 255, 0.28);
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.ctaOutline:hover {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ─── MOBILE STICKY CTA ─────────────────────────────────────── */
+.mobileCta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    z-index: 90;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .heroLayout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .heroRight {
+        display: none;
+    }
+
+    .certLayout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .certVisual {
+        order: -1;
+    }
+
+    .whyGrid,
+    .catGrid,
+    .productGrid,
+    .tGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stepsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .stepsGrid::before {
+        display: none;
+    }
+
+    .trustGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trustItem:nth-child(2) {
+        border-right: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero {
+        padding: 60px 0 80px;
+    }
+
+    .whyGrid,
+    .catGrid,
+    .productGrid,
+    .tGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .sectionHeadRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .ctaBanner {
+        padding: 36px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mobileCta {
+        display: block;
+    }
+}

@@ -1,0 +1,552 @@
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 12px;
+    background: var(--bg);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.spin {
+    color: var(--primary);
+}
+
+/* ── LAYOUT ──────────────────────────────────────────────── */
+.layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────────── */
+.sidebar {
+    background: var(--forest-deep);
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sbHeader {
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--earth-border);
+}
+
+.sbLogo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+}
+
+.sbNav {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 8px;
+    gap: 2px;
+    flex: 1;
+}
+
+.sbItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    padding: 9px 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: all 120ms ease;
+}
+
+.sbItem:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.sbItemActive {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-weight: 600;
+}
+
+.sbIcon {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.sbBadge {
+    margin-left: auto;
+    background: var(--earth-light);
+    color: white;
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 999px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.sbFooter {
+    padding: 8px;
+    border-top: 1px solid var(--earth-border);
+}
+
+/* ── MAIN ────────────────────────────────────────────────── */
+.main {
+    overflow: auto;
+    position: relative;
+}
+
+.page {
+    padding: 32px;
+}
+
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.pageTitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+}
+
+/* ── TOAST ───────────────────────────────────────────────── */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 9999;
+    background: var(--primary);
+    color: white;
+    padding: 12px 20px;
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-lg);
+    animation: slideIn 250ms ease;
+}
+
+.toastError {
+    background: var(--danger);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) translateX(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+    }
+}
+
+/* ── STATS ───────────────────────────────────────────────── */
+.statGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.statCard {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+}
+
+.statIcon {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.statVal {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.03em;
+}
+
+.statLabel {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.statSub {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    margin-top: 2px;
+}
+
+.sectionTitle {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* ── TABLE ───────────────────────────────────────────────── */
+.tableWrap {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.mono {
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.statusSelect {
+    padding: 5px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    background: var(--surface);
+    cursor: pointer;
+    font-family: var(--font);
+}
+
+.empty {
+    text-align: center;
+    color: var(--text-faint);
+    padding: 40px;
+    font-size: 0.875rem;
+}
+
+/* ── KYC ─────────────────────────────────────────────────── */
+.filterRow {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.filterBtn {
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 120ms;
+}
+
+.filterBtnActive {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.kycGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.kycCard {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+}
+
+.kycCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.kycName {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.kycEmail {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.kycFields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 16px;
+    margin-bottom: 16px;
+}
+
+.kycField {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.kycFieldLabel {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-faint);
+}
+
+.kycFieldValue {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.kycActions {
+    display: flex;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+/* ── INVENTORY ───────────────────────────────────────────── */
+.invGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.invCard {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 18px;
+}
+
+.invCardLow {
+    border-color: rgba(153, 27, 27, 0.2);
+    background: #FFF9F9;
+}
+
+.invTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.invName {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.invBar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.invFill {
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 0.4s ease;
+}
+
+.invBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+/* ── CREDIT ──────────────────────────────────────────────── */
+.creditSummary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.creditStat {
+    text-align: center;
+    padding: 12px;
+    background: var(--surface-muted);
+    border-radius: var(--radius-lg);
+}
+
+.creditStatVal {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text);
+}
+
+/* ── MODAL ───────────────────────────────────────────────── */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 150ms ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    background: var(--surface);
+    border-radius: var(--radius-2xl);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-xl);
+    animation: modalIn 200ms var(--ease-out);
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modalHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modalHead h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.modalHead button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 4px;
+}
+
+.modalHead button:hover {
+    color: var(--text);
+}
+
+.modalBody {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modalGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.modalFoot {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+}
+
+@media (max-width: 1024px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .statGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .kycGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .invGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .page {
+        padding: 16px;
+    }
+
+    .statGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .invGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .modalGrid {
+        grid-template-columns: 1fr;
+    }
+}

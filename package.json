@@ -1,0 +1,38 @@
+{
+  "name": "seeds-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "db:migrate": "prisma migrate dev --name init",
+    "db:seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
+    "db:setup": "prisma migrate dev --name init && ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.4.1",
+    "@types/nodemailer": "^7.0.11",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "next": "15.1.7",
+    "nodemailer": "^8.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/uuid": "^10.0.0",
+    "prisma": "^6.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  }
+}

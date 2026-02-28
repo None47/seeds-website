@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js build output
+.next/
+out/
+build/
+
+# Production
+dist/
+
+# Env files — never commit secrets
+.env*.local
+# Exception — keep .env.example but not real .env if it has secrets
+# .env  ← uncomment if you move secrets to .env.local
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+prisma/*.db
+
+# Vercel
+.vercel

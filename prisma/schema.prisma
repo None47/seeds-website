@@ -1,0 +1,176 @@
+// This is your Prisma schema file — production-grade, PostgreSQL-compatible
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── USER ───────────────────────────────────────────────────────────────────
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  password     String
+  role         String   @default("buyer") // "admin" | "buyer"
+
+  // Profile
+  companyName  String?
+  phone        String?
+  whatsapp     String?
+
+  // KYC
+  gstNumber    String?
+  panNumber    String?
+  state        String?
+  district     String?
+  pincode      String?
+  address      String?
+  gstCertificate String?
+  kycStatus    String   @default("pending") // pending | approved | rejected
+  kycRejectionReason String?
+  kycApprovedAt DateTime?
+
+  // Credit
+  creditLimit  Float    @default(0)
+  usedCredit   Float    @default(0)
+  outstandingBalance Float @default(0)
+  creditEnabled Boolean @default(false)
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  orders       Order[]
+  invoices     Invoice[]
+  creditTransactions CreditTransaction[]
+}
+
+// ─── PRODUCT ─────────────────────────────────────────────────────────────────
+model Product {
+  id                  String   @id @default(uuid())
+  cropName            String
+  varietyName         String
+  imageUrl            String?
+  imageBase64         String?  // local dev: store as base64
+
+  // Agronomic Specs
+  germinationPct      Float
+  purityPct           Float
+  yieldPerAcre        String
+  suitableSeason      String
+  suitableRegions     String
+  description         String?
+
+  // Batch & Compliance
+  lotNumber           String
+  batchId             String?
+  manufacturingDate   String?
+  expiryDate          String?   // viability period end date
+  dateOfTesting       String
+
+  // Trade
+  hsnCode             String
+  gstRate             Float    @default(0)
+  moq                 Int
+  stockQuantity       Int
+  tierPricing         String   @default("[]") // JSON [{minQty, pricePerUnit}]
+
+  // Categorization
+  category            String   // Wheat | Rice | Vegetable | Hybrid | Cotton | Pulses
+  isActive            Boolean  @default(true)
+  isFeatured          Boolean  @default(false)
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  orderItems          OrderItem[]
+}
+
+// ─── ORDER ───────────────────────────────────────────────────────────────────
+model Order {
+  id            String   @id @default(uuid())
+  orderNumber   String   @unique
+  buyerId       String
+  buyer         User     @relation(fields: [buyerId], references: [id])
+
+  status        String   @default("pending") // pending|approved|packed|shipped|delivered|cancelled
+  buyerState    String
+  notes         String?
+
+  // Financials — all calculated server-side
+  totalAmount   Float
+  gstAmount     Float
+  grandTotal    Float
+
+  // Shipping
+  trackingId       String?
+  shippingCarrier  String?
+  shippingDetails  String?
+  shippedAt        DateTime?
+  deliveredAt      DateTime?
+
+  // Credit
+  paidViaCredit Float   @default(0)
+
+  // Notifications
+  emailSent     Boolean  @default(false)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  items         OrderItem[]
+  invoice       Invoice?
+}
+
+// ─── ORDER ITEM ───────────────────────────────────────────────────────────────
+model OrderItem {
+  id           String  @id @default(uuid())
+  orderId      String
+  order        Order   @relation(fields: [orderId], references: [id])
+  productId    String
+  product      Product @relation(fields: [productId], references: [id])
+  quantity     Int
+  pricePerUnit Float   // locked server-side at order creation
+  gstRate      Float
+  hsnCode      String
+  subtotal     Float
+}
+
+// ─── INVOICE ─────────────────────────────────────────────────────────────────
+model Invoice {
+  id              String   @id @default(uuid())
+  invoiceNumber   String   @unique
+  orderId         String   @unique
+  order           Order    @relation(fields: [orderId], references: [id])
+  buyerId         String
+  buyer           User     @relation(fields: [buyerId], references: [id])
+
+  sellerGstin     String
+  buyerGstin      String
+  placeOfSupply   String
+  subtotal        Float
+  cgst            Float
+  sgst            Float
+  igst            Float
+  totalTax        Float
+  grandTotal      Float
+
+  invoiceDate     DateTime @default(now())
+  emailSent       Boolean  @default(false)
+
+  createdAt       DateTime @default(now())
+}
+
+// ─── CREDIT TRANSACTION ───────────────────────────────────────────────────────
+model CreditTransaction {
+  id          String   @id @default(uuid())
+  buyerId     String
+  buyer       User     @relation(fields: [buyerId], references: [id])
+  type        String   // "debit" | "credit" | "limit_update"
+  amount      Float
+  description String
+  orderId     String?
+  createdAt   DateTime @default(now())
+}

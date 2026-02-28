@@ -1,0 +1,80 @@
+.authPage {
+    min-height: calc(100vh - 200px);
+    background: linear-gradient(160deg, var(--surface-muted) 0%, var(--bg) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+}
+
+.authCard {
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 440px;
+}
+
+.authHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.authLogo {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.authTitle {
+    font-family: var(--font);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.025em;
+    margin-bottom: 0.4rem;
+}
+
+.authSubtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.authFooter {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.authLink {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.authLink:hover {
+    text-decoration: underline;
+}
+
+.demoHint {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--surface-muted);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.demoHint p {
+    margin-bottom: 0.2rem;
+}
