@@ -70,7 +70,7 @@ export default function ProductDetailPage() {
     return (
         <>
             <Navbar />
-            <main>
+            <main className={styles.pageWithSticky}>
                 <section className={styles.pageHeader}>
                     <div className="container">
                         <div className={styles.breadcrumb}>
@@ -154,9 +154,9 @@ export default function ProductDetailPage() {
                                         <div className="form-group" style={{ flex: 1 }}>
                                             <label className="form-label">Quantity (kg)</label>
                                             <div className={styles.qtyInput}>
-                                                <button onClick={() => setQty(q => Math.max(product.moq, q - 50))}>−</button>
-                                                <input type="number" className="form-input" value={qty} min={product.moq} onChange={e => setQty(Number(e.target.value))} />
-                                                <button onClick={() => setQty(q => q + 50)}>+</button>
+                                                <button className={styles.qtyBtn} onClick={() => setQty(q => Math.max(product.moq, q - 50))}>−</button>
+                                                <input type="number" className={styles.qtyField} value={qty} min={product.moq} onChange={e => setQty(Number(e.target.value))} />
+                                                <button className={styles.qtyBtn} onClick={() => setQty(q => q + 50)}>+</button>
                                             </div>
                                             <div className="form-error">Min. order: {product.moq} kg</div>
                                         </div>

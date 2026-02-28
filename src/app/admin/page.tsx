@@ -20,7 +20,7 @@ interface Buyer {
 
 interface Order {
     id: string; orderNumber: string; status: string; grandTotal: number; createdAt: string;
-    buyerState: string; trackingId?: string; shippingCarrier?: string; emailSent: boolean;
+    buyerState: string; trackingId?: string; shippingCarrier?: string; shippingDetails?: string; emailSent: boolean;
     buyer: { companyName: string; email: string };
     items: { product: { varietyName: string; cropName: string }; quantity: number; subtotal: number }[];
     invoice?: { id: string; invoiceNumber: string };

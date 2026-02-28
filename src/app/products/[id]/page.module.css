@@ -1,5 +1,11 @@
+/* ── Product Detail Page Module CSS ──────────────────────────────────────────
+   All selectors are scoped to CSS Modules (.className).
+   NO bare element selectors (body, html, h1, etc.) allowed here.
+   Global padding requirements are handled via wrapper classes.
+   ────────────────────────────────────────────────────────────────────────── */
+
 .pageHeader {
-    background: linear-gradient(160deg, #0c3d1c, #1a7a3c);
+    background: linear-gradient(160deg, var(--forest-mid), var(--primary));
     padding: 1.5rem 0;
 }
 
@@ -29,7 +35,7 @@
     overflow: hidden;
     border: 1.5px solid var(--border);
     aspect-ratio: 1;
-    background: var(--surface-2);
+    background: var(--surface-muted);
 }
 
 .productImg img {
@@ -69,7 +75,7 @@
 
 .overviewRow span:first-child {
     color: var(--text-muted);
-    font-family: var(--font-heading);
+    font-family: var(--font);
     font-weight: 600;
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -80,10 +86,12 @@
 }
 
 .productTitle {
-    font-family: var(--font-heading);
+    font-family: var(--font);
     font-size: 2rem;
     font-weight: 800;
     margin: 0.5rem 0 0.25rem;
+    color: var(--text);
+    letter-spacing: -0.025em;
 }
 
 .productSubtitle {
@@ -105,17 +113,17 @@
     border-radius: var(--radius-lg);
     padding: 1.5rem;
     margin-bottom: 1.25rem;
-    background: white;
+    background: var(--cream);
 }
 
 .cardTitle {
-    font-family: var(--font-heading);
+    font-family: var(--font);
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 1rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border);
-    color: var(--text-primary);
+    color: var(--text);
 }
 
 .specsGrid {
@@ -131,7 +139,7 @@
 }
 
 .specLabel {
-    font-family: var(--font-heading);
+    font-family: var(--font);
     font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -143,11 +151,11 @@
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--primary);
-    font-family: var(--font-heading);
+    font-family: var(--font);
 }
 
 .activeTier td {
-    background: var(--surface-3) !important;
+    background: var(--surface-muted) !important;
 }
 
 .activeTier td:first-child {
@@ -158,7 +166,7 @@
     margin-top: 0.75rem;
     font-size: 0.85rem;
     color: #664d03;
-    background: var(--warning-light);
+    background: #fef3cd;
     padding: 0.5rem 0.75rem;
     border-radius: var(--radius-md);
 }
@@ -177,23 +185,23 @@
     overflow: hidden;
 }
 
-.qtyInput button {
+.qtyBtn {
     width: 44px;
     height: 44px;
-    background: var(--surface-2);
+    background: var(--surface-muted);
     border: none;
     font-size: 1.25rem;
     font-weight: 700;
     cursor: pointer;
-    transition: background var(--transition);
+    transition: background 0.2s ease;
     flex-shrink: 0;
 }
 
-.qtyInput button:hover {
-    background: var(--surface-3);
+.qtyBtn:hover {
+    background: var(--bg);
 }
 
-.qtyInput input {
+.qtyField {
     flex: 1;
     border: none;
     border-left: 1px solid var(--border);
@@ -203,14 +211,16 @@
     font-weight: 700;
     border-radius: 0;
     height: 44px;
+    background: var(--cream);
+    color: var(--text);
 }
 
-.qtyInput input:focus {
+.qtyField:focus {
     outline: none;
 }
 
 .orderSummary {
-    background: var(--surface-2);
+    background: var(--surface-muted);
     border-radius: var(--radius-md);
     padding: 1rem;
     margin-bottom: 1rem;
@@ -231,7 +241,7 @@
     border-top: 1px solid var(--border);
     font-size: 1rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--text);
 }
 
 /* STICKY MOBILE ORDER */
@@ -241,7 +251,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: white;
+    background: var(--cream);
     border-top: 1.5px solid var(--border);
     padding: 1rem;
     gap: 1rem;
@@ -251,12 +261,14 @@
 }
 
 .stickyPrice {
-    font-family: var(--font-heading);
+    font-family: var(--font);
     font-size: 1.1rem;
     font-weight: 800;
     color: var(--primary);
     white-space: nowrap;
 }
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
 
 @media (max-width: 1024px) {
     .productLayout {
@@ -273,7 +285,9 @@
         display: flex;
     }
 
-    body {
+    /* NOTE: body padding-bottom was moved here as a scoped class.
+       Apply className={styles.pageWithSticky} to the root wrapper in page.tsx */
+    .pageWithSticky {
         padding-bottom: 80px;
     }
 
