@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSessionUser } from "@/lib/auth";
-import { sanitize, sanitizeNumber, isValidGST, isValidPAN, isValidEmail, isStrongPassword } from "@/lib/validate";
+import { sanitize } from "@/lib/validate";
 import { v4 as uuidv4 } from "uuid";
 import { sendOrderApprovalEmail, sendInvoiceEmail } from "@/lib/mailer";
 

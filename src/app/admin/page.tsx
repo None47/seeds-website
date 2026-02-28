@@ -6,9 +6,20 @@ import styles from "./page.module.css";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 interface Stats {
-    totalRevenue: number; totalOrders: number; pendingOrders: number;
+    totalRevenue: number; thisMonthRevenue: number; revenueGrowth: number;
+    totalOrders: number; pendingOrders: number;
     pendingKyc: number; totalProducts: number; lowStockProducts: number;
+    totalUsers: number; approvedDistributors: number;
     ordersByState: { buyerState: string; _count: { id: number }; _sum: { grandTotal: number } }[];
+    recentOrders: {
+        id: string; orderNumber: string; status: string; grandTotal: number; createdAt: string;
+        buyer: { companyName: string; email: string };
+        items: { product: { varietyName: string } }[];
+    }[];
+    recentKyc: {
+        id: string; companyName: string; email: string; state: string;
+        kycStatus: string; updatedAt: string;
+    }[];
 }
 
 interface Buyer {
@@ -167,23 +178,74 @@ export default function AdminDashboard() {
                             <div className="caption">{new Date().toLocaleDateString("en-IN", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</div>
                         </div>
 
+                        {/* ── 6-Metric Cards ── */}
                         <div className={styles.statGrid}>
                             {[
-                                { label: "Total Revenue", value: fmt(stats.totalRevenue), icon: "₹", sub: "From approved orders" },
-                                { label: "Total Orders", value: stats.totalOrders, icon: "◎", sub: `${stats.pendingOrders} pending` },
-                                { label: "KYC Pending", value: stats.pendingKyc, icon: "✦", sub: "Awaiting review" },
+                                { label: "Total Revenue", value: fmt(stats.totalRevenue), icon: "₹", sub: `↗ ${fmt(stats.thisMonthRevenue)} this month`, accent: true },
+                                { label: "Revenue Growth", value: `${stats.revenueGrowth >= 0 ? "+" : ""}${stats.revenueGrowth}%`, icon: "📈", sub: "vs. last month", positive: stats.revenueGrowth >= 0 },
+                                { label: "Total Orders", value: stats.totalOrders, icon: "◎", sub: `${stats.pendingOrders} pending approval` },
+                                { label: "KYC Pending", value: stats.pendingKyc, icon: "✦", sub: "Awaiting review", alert: stats.pendingKyc > 0 },
+                                { label: "Registered Buyers", value: stats.totalUsers, icon: "👥", sub: `${stats.approvedDistributors} approved` },
                                 { label: "Active Products", value: stats.totalProducts, icon: "◈", sub: `${stats.lowStockProducts} low stock` },
                             ].map(s => (
-                                <div key={s.label} className={styles.statCard}>
+                                <div key={s.label} className={styles.statCard} style={s.accent ? { borderColor: "var(--earth-border)", background: "var(--earth-subtle)" } : undefined}>
                                     <div className={styles.statIcon}>{s.icon}</div>
-                                    <div className={styles.statVal}>{s.value}</div>
+                                    <div className={styles.statVal} style={
+                                        s.alert ? { color: "var(--danger)" } :
+                                            s.positive !== undefined ? { color: s.positive ? "var(--success)" : "var(--danger)" } : undefined
+                                    }>{s.value}</div>
                                     <div className={styles.statLabel}>{s.label}</div>
                                     <div className={styles.statSub}>{s.sub}</div>
                                 </div>
                             ))}
                         </div>
 
-                        <div className={styles.sectionTitle}>State Analytics</div>
+                        {/* ── Recent Orders ── */}
+                        <div className={styles.sectionTitle} style={{ marginTop: 32 }}>Recent Orders</div>
+                        <div className={styles.tableWrap}>
+                            <table>
+                                <thead><tr><th>Order #</th><th>Buyer</th><th>Product</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+                                <tbody>
+                                    {stats.recentOrders.map(o => (
+                                        <tr key={o.id}>
+                                            <td><span className={styles.mono}>{o.orderNumber}</span></td>
+                                            <td>
+                                                <div style={{ fontWeight: 600 }}>{o.buyer.companyName}</div>
+                                                <div className="caption">{o.buyer.email}</div>
+                                            </td>
+                                            <td className="caption">{o.items[0]?.product.varietyName || "—"}</td>
+                                            <td><strong>{fmt(o.grandTotal)}</strong></td>
+                                            <td><span className={`badge ${STATUS_BADGE[o.status] || "badge-gray"}`}>{o.status}</span></td>
+                                            <td className="caption">{fmtD(o.createdAt)}</td>
+                                        </tr>
+                                    ))}
+                                    {!stats.recentOrders.length && <tr><td colSpan={6} className={styles.empty}>No orders yet</td></tr>}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* ── Recent KYC ── */}
+                        <div className={styles.sectionTitle} style={{ marginTop: 28 }}>Recent KYC Activity</div>
+                        <div className={styles.tableWrap}>
+                            <table>
+                                <thead><tr><th>Company</th><th>Email</th><th>State</th><th>Status</th><th>Updated</th></tr></thead>
+                                <tbody>
+                                    {stats.recentKyc.map(k => (
+                                        <tr key={k.id}>
+                                            <td style={{ fontWeight: 600 }}>{k.companyName || "—"}</td>
+                                            <td className="caption">{k.email}</td>
+                                            <td>{k.state || "—"}</td>
+                                            <td><span className={`badge ${STATUS_BADGE[k.kycStatus] || "badge-gray"}`}>{k.kycStatus}</span></td>
+                                            <td className="caption">{fmtD(k.updatedAt)}</td>
+                                        </tr>
+                                    ))}
+                                    {!stats.recentKyc.length && <tr><td colSpan={5} className={styles.empty}>No KYC activity yet</td></tr>}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {/* ── State Analytics ── */}
+                        <div className={styles.sectionTitle} style={{ marginTop: 28 }}>State Analytics</div>
                         <div className={styles.tableWrap}>
                             <table>
                                 <thead><tr><th>State</th><th>Orders</th><th>Revenue</th></tr></thead>

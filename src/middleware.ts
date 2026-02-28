@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { JwtPayload, verifyToken } from "@/lib/auth";
+import { jwtVerify } from "jose";
 
 // ─── Route groups ────────────────────────────────────────────────────────────
 const ADMIN_ROUTES = ["/admin", "/api/admin"];
@@ -7,19 +7,37 @@ const BUYER_ROUTES = ["/dashboard", "/api/orders"];
 const PRODUCT_ROUTES = ["/products", "/api/products"];
 const AUTH_ROUTES = ["/login", "/register"];
 
-// Middleware runs on Edge — no DB calls, JWT only.
-export function middleware(req: NextRequest) {
+// Encode secret once — jose requires Uint8Array
+const getSecret = () =>
+    new TextEncoder().encode(
+        process.env.JWT_SECRET || "seedscompany_super_secret_jwt_key_2024"
+    );
+
+interface TokenPayload {
+    userId: string;
+    email: string;
+    role: string;
+    kycStatus: string;
+}
+
+async function decodeToken(token: string): Promise<TokenPayload | null> {
+    try {
+        const { payload } = await jwtVerify(token, getSecret());
+        return payload as unknown as TokenPayload;
+    } catch {
+        return null;
+    }
+}
+
+// Middleware runs on Edge — jose is fully Edge-compatible
+export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
     const token = req.cookies.get("auth_token")?.value;
 
-    let user: JwtPayload | null = null;
-    if (token) {
-        user = verifyToken(token);
-    }
-
+    const user = token ? await decodeToken(token) : null;
     const isApi = pathname.startsWith("/api/");
 
-    // ── 1. ADMIN ROUTES (/admin/*, /api/admin/*) ───────────────────────────
+    // ── 1. ADMIN ROUTES ───────────────────────────────────────────────────
     if (ADMIN_ROUTES.some(r => pathname.startsWith(r))) {
         if (!user) {
             return isApi
@@ -34,7 +52,7 @@ export function middleware(req: NextRequest) {
         return NextResponse.next();
     }
 
-    // ── 2. BUYER DASHBOARD ROUTES (/dashboard/*, /api/orders/*) ───────────
+    // ── 2. BUYER DASHBOARD ROUTES ─────────────────────────────────────────
     if (BUYER_ROUTES.some(r => pathname.startsWith(r))) {
         if (!user) {
             return isApi
@@ -44,12 +62,9 @@ export function middleware(req: NextRequest) {
         return NextResponse.next();
     }
 
-    // ── 3. PRODUCT ROUTES — require approved KYC for authenticated buyers ──
+    // ── 3. PRODUCT ROUTES — KYC gate for authenticated buyers ─────────────
     if (PRODUCT_ROUTES.some(r => pathname.startsWith(r))) {
-        // Admins always have full access
         if (user?.role === "admin") return NextResponse.next();
-
-        // Logged-in buyer → enforce KYC approval
         if (user) {
             if (user.kycStatus !== "approved") {
                 return isApi
@@ -58,12 +73,10 @@ export function middleware(req: NextRequest) {
             }
             return NextResponse.next();
         }
-
-        // Not logged in → product catalogue is public (read-only browse), allow
         return NextResponse.next();
     }
 
-    // ── 4. AUTH PAGES — redirect already-authenticated users to their home ─
+    // ── 4. AUTH PAGES — redirect already-authenticated users ─────────────
     if (AUTH_ROUTES.some(r => pathname.startsWith(r)) && user) {
         const home = user.role === "admin" ? "/admin" : "/dashboard";
         return NextResponse.redirect(new URL(home, req.url));
